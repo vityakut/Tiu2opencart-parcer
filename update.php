@@ -9,11 +9,8 @@ include "simple_html_dom.php";
 error_reporting (E_ERROR);
 ini_set('mysqli.reconnect', 1);
 $mem_start = memory_get_usage();
-//define('DB_HOSTNAME', 'localhost');
-//define('DB_USERNAME', 'optomv');
-//define('DB_PASSWORD', '0VYfIvw5eZgU');
-//define('DB_DATABASE', 'optomv');
-include "config.php";
+
+include "config.php"; // base opencart config.php
 
 $imgpath = "catalog/products/";
 $tmpFile = "lastupdate.log";
@@ -605,8 +602,8 @@ function openCsv($filename){
 }
 
 function tgNotificate($msg){
-    $token = "366207984:AAHBd_JORaXpJnPhSLqRVRUvOyzQsccCToQ";
-    $chatID = "4447923";
+    $token = ""; // token telegram bot
+    $chatID = ""; // telegram chat id
     $messaggio = "<strong>OPTOM-V43</strong>\r\n";
     $messaggio .= $msg;
     $url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chatID;
@@ -615,7 +612,7 @@ function tgNotificate($msg){
     $optArray = array(
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_PROXY => 'http://proxy:proxy@proxy.vityakut.ru:1525'
+        CURLOPT_PROXY => 'http://95.85.58.154:8080'
     );
     curl_setopt_array($ch, $optArray);
     $result = curl_exec($ch);
